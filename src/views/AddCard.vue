@@ -1,0 +1,205 @@
+<template>
+  <div class="add-card-wrapper">
+    <h1 class="limit">
+      ADD A NEW <br />
+      BANK CARD
+    </h1>
+
+    <Card
+      :name="cardName"
+      :expired="date"
+      :cardNumber="cardNumber"
+      :vendor="getVendorImage"
+      :cardStyle="setStyle"
+    />
+
+    <div class="card-info">
+      <article>
+        <p>CARD NUMBER</p>
+        <input
+          type="text"
+          v-model="cardNumber"
+          placeholder="XXXX XXXX XXXX XXXX"
+        />
+      </article>
+
+      <article>
+        <p>CARDHOLDER NAME</p>
+        <input
+          type="text"
+          v-model="cardName"
+          placeholder="Firstname Lastname"
+        />
+      </article>
+
+      <section class="dates">
+        <article>
+          <p>MONTH</p>
+          <Dropdown :list="months" />
+        </article>
+
+        <article>
+          <p>YEAR</p>
+          <Dropdown :list="years" />
+        </article>
+      </section>
+
+      <article>
+        <Dropdown :list="vendor" @chosen-vendor="setVendor" />
+      </article>
+
+      <button @click:>ADD CARD</button>
+    </div>
+  </div>
+</template>
+
+
+
+<script>
+import Card from "../components/Card.vue";
+import Dropdown from "../components/Dropdown.vue";
+export default {
+  computed: {
+    getVendorImage() {
+      let imgSrc = "";
+      switch (this.chosenVendor) {
+        case "Bitcoin inc":
+          imgSrc = "bitcoin.svg";
+          break;
+        case "Ninja bank":
+          imgSrc = "ninja.svg";
+          break;
+        case "Block chain inc":
+          imgSrc = "blockchain.svg";
+          break;
+        case "Evil corp":
+          imgSrc = "evil.svg";
+          break;
+
+        default:
+          imgSrc = "bitcoin.svg";
+          break;
+      }
+      return imgSrc;
+    },
+    setStyle() {
+      let cardStyle = {};
+      switch (this.chosenVendor) {
+        case "Bitcoin inc":
+          cardStyle = {
+            background: "linear-gradient(248.04deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 99.07%), #FFAE34",
+            color: "black",
+          };
+          break;
+
+        case "Ninja bank":
+          cardStyle = {
+            background: " linear-gradient(248.3deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%), #222222",
+            color: "white",
+          };
+          break;
+
+        case "Block chain inc":
+          cardStyle = {
+            background: "linear-gradient(248.52deg, rgba(0, 0, 0, 0.15) 1.49%, rgba(0, 0, 0, 0) 100%), #8B58F9",
+            color: "white",
+          };
+          break;
+
+        case "Evil corp":
+          cardStyle = {
+            background: " linear-gradient(248.3deg, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0) 100%), #F33355",
+            color: "white",
+          };
+          break;
+
+        default:
+            cardStyle={  
+          background: "linear-gradient(248.3deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0) 100%), #D0D0D0",
+          color: "black"}
+          break;
+      }
+      return cardStyle;
+    },
+  },
+
+  components: { Card, Dropdown },
+  data() {
+    return {
+      cardStyle: {},
+      wifiSrc: "",
+      cardName: "",
+      cardNumber: "",
+      date: "",
+      vendor: ["Bitcoin inc", "Ninja bank", "Block chain inc", "Evil corp"],
+      years: ["22", "23", "24", "25", "26", "27", "28", "29", "30"],
+      months: [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+      ],
+      chosenVendor: "",
+    };
+  },
+  methods: {
+    toggleCurrentView() {},
+    setVendor(item) {
+      this.chosenVendor = item;
+    },
+  },
+};
+</script>
+
+<style scoped>
+.limit {
+  text-align: center;
+}
+.add-card-wrapper > * {
+  width: 84vw;
+}
+.card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 15rem;
+}
+article {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+input {
+  padding: 0.5rem;
+  border-radius: 1px;
+}
+.dates {
+  display: flex;
+  justify-content: space-between;
+}
+.dates > * {
+  width: 47%;
+}
+p {
+  padding: 0;
+  margin: 0.3rem 0rem;
+}
+button {
+  background-color: black;
+  color: white;
+  padding: 1.5rem 0rem;
+  margin-top: 2rem;
+  border-radius: 25px;
+  border: 0;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+</style>
