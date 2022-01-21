@@ -1,10 +1,12 @@
 <template >
     <div>   
         <div class="dropdown-placeholder" v-on:click="click=!click">
+            <p v-if="checkedItem">{{checkedItem}}</p>
             <i class="fas fa-caret-down"></i>
+         
 
       <ul v-if="click">
-           <li v-for="(item, index) in list" :key="index" v-on:click="onClick(item)">
+           <li v-for="(item, index) in list" :key="index" v-on:click="onClick(item); checkedItem=item">
                {{item}}
            </li> 
         </ul>
@@ -22,6 +24,7 @@ export default ({
     },
     data() {return{
     click:false,
+    checkedItem:"",
     }
     
         
@@ -29,7 +32,7 @@ export default ({
     methods:{
         onClick(item){
 
-            this.$emit('chosen-vendor',item)
+            this.$emit('chosen-option',item)
         
         }
     }
@@ -38,15 +41,22 @@ export default ({
 
 <style scoped>
 .fas{
-    margin: 1rem;
+      margin: 5px;
+      justify-self: flex-end;
+
+}
+p{
+
 }
 .dropdown-placeholder{
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     position: relative;
     border: 1px solid black;
     width:100%;
+    height: 2.5rem;
+   
 }
 div>*{
     max-width:84vw ;

@@ -19,7 +19,7 @@
           </article>
           <article class="valid">
             <p class="smallp">VALID THRU</p>
-            <p class="biggerp">{{ expired }}</p>
+            <p class="biggerp">{{formatDate}}</p>
           </article>
         </section>
       </div>
@@ -29,6 +29,12 @@
 
 <script>
 export default {
+  computed:{
+    formatDate(){
+        return this.month+"/"+this.year  
+
+    }
+  },
   props: {
     cardNumber: {
       type: String,
@@ -37,9 +43,8 @@ export default {
       type: Object,
     },
     name: String,
-    month: Number,
-    expired: String,
-    year: Number,
+    month: String,
+    year: String,
     vendor: {
       type: String,
       default: "bitcoin.svg",
@@ -53,9 +58,11 @@ export default {
       default: "chip.svg",
     },
   },
+  methods:{
+
+  },
   data() {
     return {
-
     };
   },
 };
@@ -63,23 +70,25 @@ export default {
 
 
 <style scoped>
+
 .card-holder {
   width: 82vw;
   height: 12rem;
-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
-border-radius: 8px;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  
+
 }
 .card-wrapper {
   padding: 0.5rem;
 }
-.chip-wifi,
-.valid,
-.name-info {
+.chip-wifi,.valid,.name-info {
   display: flex;
   flex-direction: column;
 }
 .chip-wifi > * {
   max-height: 1.8rem;
+  margin-top: 2px;
 }
 .vendor {
   max-height: 2.8rem;
@@ -101,7 +110,6 @@ h1 {
   font-size: 22px;
   letter-spacing: 1px;
   font-weight: 300;
-  color: black;
 }
 .smallp {
   font-size: 10px;

@@ -7,10 +7,13 @@
 
     <Card
       :name="cardName"
-      :expired="date"
       :cardNumber="cardNumber"
       :vendor="getVendorImage"
       :cardStyle="setStyle"
+      :year="chosenYear"
+      :month="chosenMonth"
+      :wifi="getVendorWifi"
+
     />
 
     <div class="card-info">
@@ -35,20 +38,20 @@
       <section class="dates">
         <article>
           <p>MONTH</p>
-          <Dropdown :list="months" />
+          <Dropdown :list="months" v-on:chosen-option="setMonth"  />
         </article>
 
         <article>
           <p>YEAR</p>
-          <Dropdown :list="years" />
+          <Dropdown :list="years" v-on:chosen-option="setYear" />
         </article>
       </section>
 
       <article>
-        <Dropdown :list="vendor" @chosen-vendor="setVendor" />
+        <Dropdown :list="vendor" @chosen-option="setVendor" />
       </article>
 
-      <button @click:>ADD CARD</button>
+      <button @click="addToWallet"> ADD CARD</button>
     </div>
   </div>
 </template>
@@ -82,6 +85,17 @@ export default {
       }
       return imgSrc;
     },
+     getVendorWifi() {
+      if(this.chosenVendor=="Bitcoin inc"){
+        return "wifi.svg"
+      }
+      else if(this.chosenVendor==""){
+              return "wifi.svg"
+
+      }
+      else return "wifi_white.svg"
+    },
+
     setStyle() {
       let cardStyle = {};
       switch (this.chosenVendor) {
@@ -130,7 +144,6 @@ export default {
       wifiSrc: "",
       cardName: "",
       cardNumber: "",
-      date: "",
       vendor: ["Bitcoin inc", "Ninja bank", "Block chain inc", "Evil corp"],
       years: ["22", "23", "24", "25", "26", "27", "28", "29", "30"],
       months: [
@@ -148,6 +161,8 @@ export default {
         "12",
       ],
       chosenVendor: "",
+      chosenYear:"",
+      chosenMonth:"",
     };
   },
   methods: {
@@ -155,6 +170,12 @@ export default {
     setVendor(item) {
       this.chosenVendor = item;
     },
+    setYear(item){
+      this.chosenYear=item;
+    },
+    setMonth(item){
+      this.chosenMonth=item;
+    }
   },
 };
 </script>
@@ -178,8 +199,8 @@ article {
   margin-top: 1rem;
 }
 input {
-  padding: 0.5rem;
   border-radius: 1px;
+  height: 2.5rem;
 }
 .dates {
   display: flex;
@@ -202,4 +223,5 @@ button {
   font-weight: 600;
   letter-spacing: 2px;
 }
+
 </style>
