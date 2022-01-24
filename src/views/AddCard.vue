@@ -12,7 +12,7 @@
       :cardStyle="setStyle"
       :year="chosenYear"
       :month="chosenMonth"
-      :wifi="getVendorWifi"
+      :wifi="getVendorWifi" 
 
     />
 
@@ -20,7 +20,7 @@
       <article>
         <p>CARD NUMBER</p>
         <input
-          type="text"
+          type="number"
           v-model="cardNumber"
           placeholder="XXXX XXXX XXXX XXXX"
         />
@@ -51,7 +51,7 @@
         <Dropdown :list="vendor" @chosen-option="setVendor" />
       </article>
 
-      <button @click="addToWallet"> ADD CARD</button>
+      <button @click="addToWallet">ADD CARD</button>
     </div>
   </div>
 </template>
@@ -140,7 +140,6 @@ export default {
   components: { Card, Dropdown },
   data() {
     return {
-      cardStyle: {},
       wifiSrc: "",
       cardName: "",
       cardNumber: "",
@@ -166,7 +165,20 @@ export default {
     };
   },
   methods: {
-    toggleCurrentView() {},
+    addToWallet(){   
+    let card = {
+      name:this.cardName,
+      cardNumber:this.cardNumber,
+      vendor:this.getVendorImage,
+      cardStyle:this.setStyle,
+      year:this.chosenYear,
+      month:this.chosenMonth,
+      wifi:this.getVendorWifi
+    }
+    this.$emit("card-submitted",card)
+
+    },
+
     setVendor(item) {
       this.chosenVendor = item;
     },

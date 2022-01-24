@@ -1,10 +1,10 @@
 <template>
-  <div>
     <div class="card-holder" :style="cardStyle">
       <div class="card-wrapper">
         <section class="card-top">
           <article class="chip-wifi">
             <img :src="require('../assets/' + wifi)" />
+
             <img src="../assets/chip.svg" />
           </article>
           <img :src="require('../assets/' + vendor)" class="vendor" />
@@ -19,22 +19,31 @@
           </article>
           <article class="valid">
             <p class="smallp">VALID THRU</p>
-            <p class="biggerp">{{formatDate}}</p>
+            <p class="biggerp">{{ formatDate }}</p>
           </article>
         </section>
       </div>
     </div>
-  </div>
+  
 </template>
 
 <script>
 export default {
-  computed:{
-    formatDate(){
-        return this.month+"/"+this.year  
-
-    }
+  computed: {
+    formatDate() {
+      if(!this.month && !this.year ){
+        return"MM/YY"
+      }
+      else if (!this.month && this.year){
+        return "MM/"+this.year
+      }
+      else if(this.month && !this.year){
+        return this.month + "/YY"
+      }
+      else return this.month + "/" + this.year;
+    },
   },
+  mounted() {},
   props: {
     cardNumber: {
       type: String,
@@ -58,11 +67,12 @@ export default {
       default: "chip.svg",
     },
   },
-  methods:{
-
+  methods: {
+       
   },
   data() {
     return {
+
     };
   },
 };
@@ -70,19 +80,18 @@ export default {
 
 
 <style scoped>
-
 .card-holder {
   width: 82vw;
   height: 12rem;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
-  
-
 }
 .card-wrapper {
   padding: 0.5rem;
 }
-.chip-wifi,.valid,.name-info {
+.chip-wifi,
+.valid,
+.name-info {
   display: flex;
   flex-direction: column;
 }

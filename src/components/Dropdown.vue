@@ -1,11 +1,11 @@
 <template >
     <div>   
-        <div class="dropdown-placeholder" v-on:click="click=!click">
+        <div class="dropdown-placeholder" v-on:click="clicked=!clicked">
             <p v-if="checkedItem">{{checkedItem}}</p>
             <i class="fas fa-caret-down"></i>
          
 
-      <ul v-if="click">
+      <ul v-if="clicked">
            <li v-for="(item, index) in list" :key="index" v-on:click="onClick(item); checkedItem=item">
                {{item}}
            </li> 
@@ -23,7 +23,7 @@ export default ({
         list:Array,
     },
     data() {return{
-    click:false,
+    clicked:false,
     checkedItem:"",
     }
     
@@ -45,9 +45,7 @@ export default ({
       justify-self: flex-end;
 
 }
-p{
 
-}
 .dropdown-placeholder{
     display: flex;
     justify-content: space-between;
