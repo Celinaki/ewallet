@@ -20,7 +20,7 @@
       <article>
         <p>CARD NUMBER</p>
         <input
-          type="number"
+          type="text"
           v-model="cardNumber"
           placeholder="XXXX XXXX XXXX XXXX"
         />
@@ -86,12 +86,8 @@ export default {
       return imgSrc;
     },
      getVendorWifi() {
-      if(this.chosenVendor=="Bitcoin inc"){
+      if(this.chosenVendor=="Bitcoin inc" || this.chosenVendor==""){
         return "wifi.svg"
-      }
-      else if(this.chosenVendor==""){
-              return "wifi.svg"
-
       }
       else return "wifi_white.svg"
     },
@@ -187,7 +183,8 @@ export default {
     },
     setMonth(item){
       this.chosenMonth=item;
-    }
+    },
+
   },
 };
 </script>

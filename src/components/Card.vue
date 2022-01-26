@@ -1,4 +1,5 @@
 <template>
+<div v-on:click="setInfo">
     <div class="card-holder" :style="cardStyle">
       <div class="card-wrapper">
         <section class="card-top">
@@ -10,7 +11,7 @@
           <img :src="require('../assets/' + vendor)" class="vendor" />
         </section>
         <section class="card-number">
-          <h1>{{ cardNumber }}</h1>
+          <h1>{{ fourth }}</h1>
         </section>
         <section class="card-bottom">
           <article class="name-info">
@@ -24,12 +25,13 @@
         </section>
       </div>
     </div>
-  
+  </div>
 </template>
 
 <script>
 export default {
   computed: {
+
     formatDate() {
       if(!this.month && !this.year ){
         return"MM/YY"
@@ -42,6 +44,18 @@ export default {
       }
       else return this.month + "/" + this.year;
     },
+
+    fourth(){
+      let computedCardNumber=""
+      for(let i=0; i< this.cardNumber.length; i++){
+        computedCardNumber+=this.cardNumber[i]
+        if((i+1) % 4 == 0 ){
+           computedCardNumber+=" "
+      }
+    }
+return computedCardNumber
+    },
+
   },
   mounted() {},
   props: {
@@ -60,7 +74,6 @@ export default {
     },
     wifi: {
       type: String,
-      default: "wifi_white.svg",
     },
     chip: {
       type: String,
@@ -68,6 +81,19 @@ export default {
     },
   },
   methods: {
+    setInfo(){
+      let cardInfo={
+        name:this.name,
+        cardNumber:this.cardNumber,
+        vendor:this.vendor,
+        cardStyle:this.cardStyle,
+        year:this.year,
+        month:this.month,
+        wifi:this.month
+
+      };
+      this.$emit("clicked",cardInfo)
+    }
        
   },
   data() {
