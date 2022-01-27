@@ -3,7 +3,7 @@
     <h1>E-WALLET</h1>
     <Card
     v-if="active"
-    class="aktiv"
+    class="active-margin"
     :cardNumber="this.activeCard.cardNumber"
     :cardStyle="this.activeCard.cardStyle"
     :vendor="this.activeCard.vendor"
@@ -63,16 +63,10 @@ export default {
 </script>
 
 <style scoped>
-.card-margin:hover{
 
-}
-.card-box>*:hover{
-  margin-top:-120px
-}
-.aktiv{
+
+.active-margin{
   margin-top: 80px;
-
-
 }
 .card-box{
   align-self: center;
