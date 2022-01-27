@@ -1,5 +1,6 @@
 <template>
-<div v-on:click="setInfo">
+<div>
+  <div v-on:click="setInfo">
     <div class="card-holder" :style="cardStyle">
       <div class="card-wrapper">
         <section class="card-top">
@@ -24,8 +25,9 @@
           </article>
         </section>
       </div>
+      </div>
     </div>
-  </div>
+    </div>
 </template>
 
 <script>
@@ -81,19 +83,18 @@ return computedCardNumber
     },
   },
   methods: {
-    setInfo(){
-      let cardInfo={
-        name:this.name,
-        cardNumber:this.cardNumber,
-        vendor:this.vendor,
-        cardStyle:this.cardStyle,
-        year:this.year,
-        month:this.month,
-        wifi:this.month
-
+setInfo() {
+      let cardInfo = {
+        name: this.name,
+        cardNumber: this.cardNumber,
+        vendor: this.vendor,
+        cardStyle: this.cardStyle,
+        year: this.year,
+        month: this.month,
+        wifi: this.wifi,
       };
-      this.$emit("clicked",cardInfo)
-    }
+      this.$emit("clicked", cardInfo);
+    },
        
   },
   data() {
@@ -111,13 +112,12 @@ return computedCardNumber
   height: 12rem;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
+  align-self: center;
 }
 .card-wrapper {
   padding: 0.5rem;
 }
-.chip-wifi,
-.valid,
-.name-info {
+.chip-wifi, .valid, .name-info {
   display: flex;
   flex-direction: column;
 }

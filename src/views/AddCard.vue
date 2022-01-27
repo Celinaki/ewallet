@@ -51,7 +51,7 @@
         <Dropdown :list="vendor" @chosen-option="setVendor" />
       </article>
 
-      <button @click="addToWallet">ADD CARD</button>
+      <button @click="addToWallet"><h1>ADD CARD</h1> </button>
     </div>
   </div>
 </template>
@@ -194,7 +194,7 @@ export default {
   text-align: center;
 }
 .add-card-wrapper > * {
-  width: 84vw;
+  width: 82vw;
 }
 .card-info {
   display: flex;
@@ -222,7 +222,7 @@ p {
   padding: 0;
   margin: 0.3rem 0rem;
 }
-button {
+/* button {
   background-color: black;
   color: white;
   padding: 1.5rem 0rem;
@@ -231,6 +231,6 @@ button {
   border: 0;
   font-weight: 600;
   letter-spacing: 2px;
-}
+} */
 
 </style>

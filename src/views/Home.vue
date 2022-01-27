@@ -1,9 +1,9 @@
 <template>
-    <div>
+    <div class="homewrap">
         <Wallet
         :cardList="cardList"
         />
-        <button @click="addCard">Add Card</button>
+        <button @click="addCard"><h1> ADD CARD</h1></button>
     </div>
 </template>
 
@@ -28,6 +28,21 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style >
+.homewrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+button{
+  /* background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  padding: 0.1rem 0rem;
+  margin-top: 2rem;
+  border-radius: 25px;
+  border: 3px solid black;
+  font-weight: 100;
+  letter-spacing: 2px;
+  min-width: 70vw; */
+  }
 </style>

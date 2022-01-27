@@ -52,9 +52,30 @@ p{
   justify-content: center;
 }
 body,html{
-
+  text-align: center;
   margin: 0;
   padding: 0;
+}
+button{
+    background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  padding: 0.5rem 0rem;
+  margin-top: 2rem;
+  border-radius: 20px;
+  border: 3px solid black;
+  font-weight: 100;
+  letter-spacing: 2px;
+  transition: 500ms;
+  min-width:82vw ;
+}
+button:hover{
+    transition: 500ms;
+
+  background-color: black;
+  color: white;
+}
+button>h1{
+  margin:0
 }
 </style>
 

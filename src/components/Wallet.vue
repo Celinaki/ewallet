@@ -3,7 +3,7 @@
     <h1>E-WALLET</h1>
     <Card
     v-if="active"
-   
+    class="aktiv"
     :cardNumber="this.activeCard.cardNumber"
     :cardStyle="this.activeCard.cardStyle"
     :vendor="this.activeCard.vendor"
@@ -15,8 +15,8 @@
     />
 <div class="card-box">
     <Card
-     @clicked="setActive(card)"
-      v-for="(card, index) in cardList"
+      class="card-margin"
+      v-for="(card, index) in cardList" 
       :key="index"
       :name="card.name"
       :cardNumber="card.cardNumber"
@@ -24,7 +24,8 @@
       :cardStyle="card.cardStyle"
       :year="card.year"
       :month="card.month"
-      :wifi="card.wifi"  
+      :wifi="card.wifi"
+      @clicked="setActive(card)"
     />
 </div>
 
@@ -52,7 +53,7 @@ export default {
 
   methods: {
     setActive(card){
-      console.log("klickad")
+      console.log("card")
       this.activeCard= card;
       this.active=true
 
@@ -62,7 +63,23 @@ export default {
 </script>
 
 <style scoped>
+.card-margin:hover{
+
+}
+.card-box>*:hover{
+  margin-top:-120px
+}
+.aktiv{
+  margin-top: 80px;
+
+
+}
 .card-box{
+  align-self: center;
+  margin-top: 150px;
+  margin-bottom: 150px;
+}
+.card-box>*{
   position: relative;
   margin-top:-100px;
 }
